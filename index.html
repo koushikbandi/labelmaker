@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Rexel Label Maker</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <style>
+        body {
+            min-width: 560px;
+        }
+        .version {
+            margin:10px 0;
+            text-align: center;
+        }
+
+        .h3 {
+            font-size: 1.143rem;
+            font-weight: Bold;
+            color: #58585a;
+            text-transform: Capitalize
+        }
+
+        .header {
+            text-align: center;
+            color: #2a3e87;
+        }
+
+        .fnt {
+            font-size: 13px;
+
+        }
+
+        .help {
+            font-size: 1.2rem;
+            font-weight: Bold;
+            color: #58585a;
+            letter-spacing: 0.05rem;
+            bottom: 10px;
+            text-align: center;
+            margin: auto;
+            right: 0;
+            left: 0;
+        }
+
+        .order-box {
+            padding: 5px;
+            width: 300px;
+            border: solid;
+            border-color: #d3d3d3;
+            border-radius: 5px;
+            border-width: 2px 1px 1px 1px;
+        }
+    </style>
+</head>
+<body>
+<!-- this page is meant to be a popup or in an iframe -->
+<h2 class="header">Welcome to Rexel Label Maker</h2>
+<div class="container-fluid">
+    <div class="row" v-cloak>
+        <div class="col-xs-4">
+            <br/>
+            <label>Template</label>
+            <br/>
+            <select class="form-control" id="template">
+                <option value="thirty" selected>Small - (US Letter) - Avery 5160</option>
+                <option value="fourteen">Medium - (US Letter) - Avery 5162</option>
+                <option value="ten">Large - (US Letter) - Avery 5163</option>
+                <option value="ten-63">Large - (US Letter) - Avery 8163</option>
+                <option value="can-small">Small - (CAN Letter) - Avery 5160</option>
+                <option value="can-medium">Medium - (CAN Letter) - Avery 5162</option>
+                <option value="can-large">Large - (CAN Letter) - Avery 5163</option>
+                <option value="five">U-line (US/CAN letter) S-16991</option>
+                <option value="lfive">Small - (International size A4) - Avery 3475</option>
+                <option value="intermedium">Medium - (International size A4) - Avery 3653</option>
+                <option value="interlarge">Large - (International size A4) - Avery 3425</option>
+                <option value="l6031">Avery L6031 - A4 Germany</option>
+                <option value="A3423">Avery 3423 - A4 Germany</option>
+                <option value="herma">Herma 8844 - A4 Germany</option>
+                <option value="sweden-custom">Sweden Custom Label</option>
+                <option value="A3421">Avery 3421 - AT</option>
+                <option value="C23358">Avery C23358-25 - AT</option>
+                <!-- <option value="ten">Avery 8163/5263</option> -->
+            </select>
+        </div>
+        <div class="col-xs-4">
+            <br/>
+            <label>Top Adjust</label>
+            <br/>
+            <div class="input-group">
+                <input type="text" class="form-control" value="0" id="topAdjust"/>
+                <span class="input-group-addon">in</span>
+            </div>
+        </div>
+        <div class="col-xs-4">
+            <br/>
+            <label>Left Adjust</label>
+            <br/>
+            <div class="input-group">
+                <input type="text" class="form-control" value="0" id="leftAdjust"/>
+                <span class="input-group-addon">in</span>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-xs-2">
+
+            <label>Banner</label>
+            <br/>
+            <select class="form-control" id="banner">
+
+                <option value="regro" selected>AT-Regro</option>
+                <option value="schake">AT-Schacke</option>
+                <option value="ideal">AU-Ideal AU</option>
+                <option value="jrturk">AU-J.R Turk</option>
+                <option value="learsmith">AU-Lear & Smith</option>
+                <option value="rexel">AU-Rexel AU</option>
+                <option value="nedco">CA-Nedco</option>
+                <option data-id="canada" value="rexelatiantic">CA-Rexel Atlantic</option>
+                <option data-id="canada" value="westburne">CA-Westburne</option>
+                <option value="hagemeyer">DE-Hagemeyer</option>
+                <option value="rexel">FR-Rexel France</option>
+                <option value="rexel">NL-Rexel Netherlands</option>
+                <option value="elektroskandia" >NO-Elektroskandia</option>
+                <option value="ideal">NZ-Ideal NZ</option>
+                <option value="selga">SE-Selga</option>
+                <option value="storel">SE-Storel</option>
+                <option value="gexpro">US-Gexpro</option>
+                <option value="platt">US-Platt</option>
+                <option value="rexel">US-Rexel USA</option>
+                <!--<option value="rexelfr">Rexel FR</option>-->
+                <!--<option value="platt">J.R Turk</option>-->
+                <!--<option value="platt">Ideal AU</option>-->
+                <!--<option value="platt">Lear & Smith</option>-->
+                <!--<option value="rexelnz">Ideal NZ</option>-->
+            </select>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-xs-7">
+            <br/>
+            <label>CSV File (<a href="./example.csv" target="_blank">example</a>)</label>
+            <label>(<a href="./Template.csv" target="_blank">template</a>)</label>
+            <br/>
+            <input type="file" accept=".csv" class="form-control" id="csvFile"/>
+        </div>
+        <div class="col-xs-5">
+            <br/>
+            <label>Generate PDF</label>
+            <br/>
+            <div class="btn btn-block btn-primary" id="printBtn">Print</div>
+        </div>
+    </div>
+    <br/>
+    <p class="text-muted fnt">Make sure popups are enabled for this page, as the generated PDF will open in one.
+        <br>If using the Md or Lg template, make sure all of product images are
+        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_enabled_image" target="_blank">CORS
+            enabled</a>.
+    </p>
+    <p><a href="./Guidelines%20to%20use%20Rexel%20label%20maker.pdf" target="_blank">Guidelines to use Rexel Label
+        Maker</a></p>
+    <label>Order Labels here</label>
+    <div class="order-box">
+        <p class="text-muted">Small - (US Letter) - Avery 5160:
+            <br>
+            <a href="http://www.avery.com/avery/en_us/Products/Labels/Addressing-Labels/Easy-Peel-White-Address-Labels_05160.htm"
+               target="_blank">Avery</a>
+            <a href="https://www.staples.com/Avery-1-x-2-5-8-5160-Laser-Address-Labels-with-Easy-Peel-White-3-000-Box/product_209882"
+               target="_blank">Staples</a>
+        </p>
+        <p class="text-muted">Medium - (US Letter) - Avery 5162:
+            <br>
+            <a href="http://www.avery.com/avery/en_us/Products/Labels/Addressing-Labels/Easy-Peel-White-Address-Labels_05162.htm"
+               target="_blank">Avery</a>
+            <a href="https://www.staples.com/Avery-1-1-3-x-4-5162-Laser-Address-Labels-with-Easy-Peel-White-1-400-Box/product_209908"
+               target="_blank">Staples</a>
+        </p>
+        <p class="text-muted">Large - (US Letter) - Avery 5163:
+            <br>
+            <a href="http://www.avery.com/avery/en_us/Products/Labels/Shipping-Labels/White-Shipping-Labels_05163.htm"
+               target="_blank">Avery</a>
+            <a href="https://www.staples.com/Avery-Laser-Shipping-Labels-with-TrueBlock-2-x-4-White-1-000-Box-5163/product_260273"
+               target="_blank">Staples</a>
+        </p>
+        <p class="text-muted">Small - (CAN Letter) - Avery 5160:
+            <br>
+            <a href="http://www.avery.com/avery/en_us/Products/Labels/Addressing-Labels/Easy-Peel-White-Address-Labels_05160.htm"
+               target="_blank">Avery</a>
+            <a href="https://www.staples.com/Avery-1-x-2-5-8-5160-Laser-Address-Labels-with-Easy-Peel-White-3-000-Box/product_209882"
+               target="_blank">Staples</a>
+        </p>
+        <p class="text-muted">Medium - (CAN Letter) - Avery 5162:
+            <br>
+            <a href="http://www.avery.com/avery/en_us/Products/Labels/Addressing-Labels/Easy-Peel-White-Address-Labels_05162.htm"
+               target="_blank">Avery</a>
+            <a href="https://www.staples.com/Avery-1-1-3-x-4-5162-Laser-Address-Labels-with-Easy-Peel-White-1-400-Box/product_209908"
+               target="_blank">Staples</a>
+        </p>
+        <p class="text-muted">Large - (CAN Letter) - Avery 5163:
+            <br>
+            <a href="http://www.avery.com/avery/en_us/Products/Labels/Shipping-Labels/White-Shipping-Labels_05163.htm"
+               target="_blank">Avery</a>
+            <a href="https://www.staples.com/Avery-Laser-Shipping-Labels-with-TrueBlock-2-x-4-White-1-000-Box-5163/product_260273"
+               target="_blank">Staples</a>
+        </p>
+        <p class="text-muted">U-line (US/CAN letter) S-16991:
+            <br>
+            <a href="https://www.uline.com/Product/Detail/S-16991/Laser-Labels/Uline-Laser-Labels-White-2-x-1-1-4?pricode=WB0184&gadtype=pla&id=S-16991&gclid=Cj0KCQjwoZTNBRCWARIsAOMZHmHcVWviLj7n2MCsbCchZvvfB0M6xQzKjQ4UwaxWOs21rMMDJx5vQnEaAhJjEALw_wcB&gclsrc=aw.ds"
+               target="_blank">U-line</a>
+        </p>
+        <p class="text-muted">Small - (International size A4) - Avery 3475:
+            <br>
+            <a href="https://www.avery.co.uk/product/multipurpose-labels-3475"
+               target="_blank">Avery</a>
+        </p>
+        <p class="text-muted">Medium - (International size A4) - Avery 3653:
+            <br>
+            <a href="https://www.avery.co.uk/product/multipurpose-labels-3653"
+               target="_blank">Avery</a>
+        </p>
+        <p class="text-muted">Large - (International size A4) - Avery 3425:
+            <br>
+            <a href="https://www.avery.co.uk/product/multipurpose-labels-3425"
+               target="_blank">Avery</a>
+        </p>
+
+    </div>
+
+    <div id="softAlerts"></div>
+</div>
+
+<div class="help">If you have any questions, issues or suggestions for improvement to the Rexel Label Maker, please
+    contact us: 
+    <a href="mailto:mobileappsupport@rexel.com%20?Subject=Rexel Label Maker feedback&body=If%20submitting%20an%20issue%20please%20attach%20a%20copy%20of%20CSV%20file" style="cursor: pointer">mobileappsupport@rexel.com</a></div>
+<div class="version"><b>Version 2.0</b></div>
+
+
+<script src="/fire.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.1/lodash.min.js"></script>
+<script src="bower_components/JsBarcode/JsBarcode.js"></script>
+<script src="bower_components/JsBarcode/CODE39.js"></script>
+<script src="bower_components/comma-separated-values/csv.js"></script>
+<script src="jspdf.min.js"></script>
+<script src="app.js"></script>
+<script src="logos.js"></script>
+</body>
+</html>

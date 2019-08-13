@@ -1,0 +1,42 @@
+{
+  "name": "JsBarcode",
+  "main": "JsBarcode.js",
+  "homepage": "https://github.com/lindell/JsBarcode",
+  "authors": [
+    "Johan Lindell <lindell92@gmail.com>"
+  ],
+  "description": "JsBarcode is a simple way to create different types of 1d barcodes.",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/lindell/JsBarcode"
+  },
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "barcode",
+    "canvas",
+    "ean",
+    "code128",
+    "upc-a",
+    "itf"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "c279dbfba4",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "c279dbfba42bbc26be6103c4d28f51bf8e017eca"
+  },
+  "_source": "git://github.com/lindell/JsBarcode.git",
+  "_target": "*",
+  "_originalSource": "jsbarcode",
+  "_direct": true
+}
